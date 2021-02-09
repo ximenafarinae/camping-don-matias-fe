@@ -5,8 +5,9 @@ import { useForm } from "react-hook-form";
 import { usePost } from "./../utils/useHTTP";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaFamilyMember } from "./../Components/schemas/schemas";
+import { Link } from "react-router-dom";
 
-const FamilyForm = ({ id, match, history, setMembers, readonly }) => {
+const FamilyForm = ({ id, setMembers, readonly }) => {
   const [values, handler, setValues] = useCustomForm();
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schemaFamilyMember),
@@ -23,7 +24,6 @@ const FamilyForm = ({ id, match, history, setMembers, readonly }) => {
 
   const handleCancel = (e) => {
     e.preventDefault();
-    history.goBack();
   };
 
   return (
@@ -97,13 +97,11 @@ const FamilyForm = ({ id, match, history, setMembers, readonly }) => {
             </Col>
           </Row>
           <Row className=" d-flex p-2 justify-content-end">
-            <Button
-              className="btn btn-primary mr-1"
-              variant="info"
-              onClick={handleCancel}
-            >
-              Salir
-            </Button>
+            <Link to="/tenant-list">
+              <Button className="btn btn-primary mr-1" variant="info">
+                Salir
+              </Button>
+            </Link>
             <Button className="btn btn-success" variant="primary" type="submit">
               Aceptar
             </Button>
