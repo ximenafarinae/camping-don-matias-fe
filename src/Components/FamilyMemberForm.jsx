@@ -17,7 +17,7 @@ const FamilyForm = ({ id, match, history, setMembers, readonly }) => {
   const registro = () => {
     setValues([values]);
     setMembers([values]);
-    execute(`familyMember/${id}`, values); 
+    execute(`familyMember/${id}`, values);
     setValues({});
   };
 
