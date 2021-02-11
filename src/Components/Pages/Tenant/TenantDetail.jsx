@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Table,
   Container,
   Row,
   Col,

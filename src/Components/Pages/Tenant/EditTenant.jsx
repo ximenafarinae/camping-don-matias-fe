@@ -29,9 +29,9 @@ const EditTenant = ({ match, history }) => {
   }, []);
 
   const update = (e) => {
-    e.preventDefault();
     // setValues(values); //Tiene sentido??
     executePut(`tenant/${id}`, values);
+    e.preventDefault();
     history.goBack();
   };
   const handleDelete = () => {

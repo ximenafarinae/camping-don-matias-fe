@@ -18,6 +18,7 @@ const FamilyMember = ({ match }) => {
               id={id}
               readonly={readonly}
               setLoading={setLoading}
+              members={members}
               setMembers={setMembers}
             ></FamilyForm>
           </Col>
