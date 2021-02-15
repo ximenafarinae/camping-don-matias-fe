@@ -1,108 +1,21 @@
 import React from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Button,
-  Card,
-  ListGroup,
-  ListGroupItem,
-} from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import Members from "../../Members";
 import Diseases from "./../../Diseases";
 import { useGet } from "./../../../utils/useHTTP";
-import moment from "moment";
-
+import TenantCard from "./../../TenantCard";
 const TenantDetail = (props) => {
   const id = props.match.params.id;
   const [data, isLoading, error] = useGet({
     url: `tenant/${id}`,
   });
-  const {
-    name,
-    last_name,
-    birth_date,
-    dni,
-    vehicle_registration_number,
-    phone,
-    email,
-    address,
-  } = data;
+
   return (
     <>
       <Container className="mt-5">
         <Row>
           <Col sm={6}>
-            <Card>
-              <Card.Header className="text-success font-weight-bold justify-content-center">
-                INQUILINO
-              </Card.Header>
-              <Card.Body>
-                <ListGroup className="list-group-flush">
-                  {" "}
-                  <ListGroupItem>
-                    <span className="text-success font-weight-bold">
-                      Nombre y Apellido:
-                    </span>
-                    <span>
-                      {" "}
-                      {name}, {last_name}
-                    </span>
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    <span className="text-success font-weight-bold">
-                      Fec. de Nac.:
-                    </span>
-                    {"  "}
-                    <span>
-                      {birth_date
-                        ? moment(birth_date).format("DD/MM/YYYY")
-                        : ""}
-                    </span>
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    <span className="text-success font-weight-bold">DNI:</span>{" "}
-                    <span> {dni}</span>
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    <span className="text-success font-weight-bold">
-                      Datos del vehiculo:
-                    </span>{" "}
-                    <span> {vehicle_registration_number}</span>
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    <span className="text-success font-weight-bold">
-                      Teléfono:
-                    </span>{" "}
-                    <span>{phone}</span>
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    <span className="text-success font-weight-bold">
-                      Correo electrónico:
-                    </span>{" "}
-                    <span>{email}</span>
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    <span className="text-success font-weight-bold">
-                      Dirección:
-                    </span>{" "}
-                    <span>{address}</span>
-                  </ListGroupItem>
-                </ListGroup>
-              </Card.Body>
-              <Card.Body className="d-inline-flex justify-content-end">
-                <Button
-                  size="sm"
-                  variant="outline-success"
-                  className="font-weight-bold"
-                  onClick={() => {
-                    props.history.push(`/edit-tenant/${id}`);
-                  }}
-                >
-                  EDITAR
-                </Button>
-              </Card.Body>
-            </Card>
+            <TenantCard {...props} id={id} data={data}></TenantCard>
           </Col>
           <Col sm={6}>
             <Diseases id={id}></Diseases>
